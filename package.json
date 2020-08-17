@@ -1,0 +1,102 @@
+{
+  "name": "base-express-graphql-app",
+  "version": "1.0.0",
+  "description": "Base express-graphql app to start a new project",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnandresmedina/base-express-graphql-app.git"
+  },
+  "keywords": [
+    "javascript",
+    "Node.js",
+    "express",
+    "graphql",
+    "apollo-server",
+    "mongodb",
+    "mongoose"
+  ],
+  "author": "John Medina",
+  "license": "MIT",
+  "homepage": "https://github.com/johnandresmedina/base-express-graphql-app#readme",
+  "scripts": {
+    "lint": "eslint src --color",
+    "dev": "nodemon --exec babel-node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -d build",
+    "serve": "node build/index.js",
+    "format:check": "prettier --check \"src/**/*.{js,json,md}\"",
+    "format": "prettier --write \"src/**/*.{js,json,md}\" "
+  },
+  "dependencies": {
+    "apollo-server-express": "^2.16.1",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.7.7"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.1",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.0",
+    "eslint": "^7.6.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.0.5"
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "airbnb-base",
+      "prettier"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 2020
+    },
+    "rules": {
+      "no-console": [
+        "error",
+        {
+          "allow": [
+            "warn",
+            "error",
+            "log"
+          ]
+        }
+      ]
+    }
+  },
+  "prettier": {
+    "printWidth": 100,
+    "trailingComma": "all",
+    "tabWidth": 2,
+    "semi": true,
+    "singleQuote": true,
+    "bracketSpacing": true,
+    "useTabs": false,
+    "arrowParens": "avoid",
+    "endOfLine": "lf"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,json}": "eslint",
+    "src/**/*.{js,json,md}": "prettier --write"
+  },
+  "engines": {
+    "node": ">=12.0.0",
+    "npm": ">=6.14.4"
+  }
+}
