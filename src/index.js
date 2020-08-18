@@ -1,9 +1,9 @@
 import express from 'express';
-import { ApolloServer, gql } from 'apollo-server-express';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import 'dotenv/config';
 import connectToDatabase from './config/database';
+import graphql from './graphql';
 // import authRoute from './routes/auth/auth';
 // import usersRoute from './routes/users/users';
 
@@ -26,21 +26,8 @@ app.get('/', (request, response) => response.send('API Running'));
 // app.use('/api/auth', authRoute);
 // app.use('/api/users', usersRoute);
 
-const typeDefs = gql`
-  type Query {
-    hello: String
-  }
-`;
-
-const resolvers = {
-  Query: {
-    hello: () => 'Hello world!',
-  },
-};
-
-const server = new ApolloServer({ typeDefs, resolvers });
-server.applyMiddleware({ app });
+graphql.applyMiddleware({ app });
 
 app.listen(PORT, () =>
-  console.log(`🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`),
+  console.log(`🚀 Server ready at http://localhost:${PORT}${graphql.graphqlPath}`),
 );
